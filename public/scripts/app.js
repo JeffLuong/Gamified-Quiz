@@ -27,7 +27,9 @@ app.controller('quireQuizController', ['$scope', '$compile', function($scope, $c
   ];
 
   this.userResults = {
-    score: 0
+    score: 0,
+    incorrect: [],
+    correct: []
   };
 
   this.message = "";
@@ -41,6 +43,7 @@ app.controller('quireQuizController', ['$scope', '$compile', function($scope, $c
             $quest       = $("<h2>"),
             $answersList = $("<ul class='answer-list'>"),
             answersArray = questions[i].answers;
+            $message     = $("</br><span class='answer-message" + i + "' ng-bind='quiz.answerMessage" + i + "'>");
 
         $quest.text(questions[i].question);
         $questCont.append($quest);
@@ -48,21 +51,21 @@ app.controller('quireQuizController', ['$scope', '$compile', function($scope, $c
         $('.quiz-container').append($questCont);
 
         for (var j = 0; j < answersArray.length; j++) {
-            var $answer = $("<li>"),
-                $input  = $("<input class='answer' name='question-" + (i + 1) + "' type='radio' id='q" + (i + 1) + "a" + (j + 1) + "'>"),
-                $label  = $("<label for='q" + (i + 1) + "a" + (j + 1) + "'>"),
-                $span1  = $("<span class='radioButton'>")
-                $span2  = $("<span>");
+            var $answer  = $("<li>"),
+                $input   = $("<input class='answer' name='question-" + (i + 1) + "' type='radio' id='q" + (i + 1) + "a" + (j + 1) + "'>"),
+                $label   = $("<label for='q" + (i + 1) + "a" + (j + 1) + "'>"),
+                $span1   = $("<span class='radioButton'>"),
+                $span2   = $("<span>");
 
             $label.append($span1);
             if (answersArray[j].incorrect) {
-              console.log("label text");
               $span2.text(answersArray[j].incorrect);
               $input.attr("value", false);
+              $input.attr("ng-click", "quiz.testIfCorrect('false', " + i + ")");
             } else {
-              console.log("label text");
               $span2.text(answersArray[j].correct);
               $input.attr("value", true);
+              $input.attr("ng-click", "quiz.testIfCorrect('true', " + i + ")");
             }
 
             $label.append($span2);
@@ -73,9 +76,40 @@ app.controller('quireQuizController', ['$scope', '$compile', function($scope, $c
             // need $compile if you want to dynamically create elems with ng- functions
             $compile($input)($scope);
         };
+        $answer.append($message);
+        $compile($message)($scope);
     };
 
   };
+
+  // this is a brute force/hard coded way of doing it....need to refactor this function.
+  this.testIfCorrect = function(correct, num) {
+    if (correct === 'true' && num === 0) {
+      this.answerMessage0 = "Correct!";
+      this.renderColors('#4D9F30', num)
+    } else if (correct === 'false' && num === 0){
+      this.answerMessage0 = "Incorrect! Try again!";
+      this.renderColors('red', num);
+    } else if (correct === 'true' && num === 1) {
+      this.answerMessage1 = "Correct!";
+      this.renderColors('#4D9F30', num)
+    } else if (correct === 'false' && num === 1){
+      this.answerMessage1 = "Incorrect! Try again!";
+      this.renderColors('red', num);
+    } else if (correct === 'true' && num === 2){
+      this.answerMessage2 = "Correct!";
+      this.renderColors('#4D9F30', num)
+    } else if (correct === 'false' && num === 2){
+      this.answerMessage2 = "Incorrect! Try again!";
+      this.renderColors('red', num);
+    }
+  }
+
+  this.renderColors = function(color, num) {
+    $('.answer-message' + num).css({
+      'color': color
+    });
+  }
 
   this.submitQuiz = function() {
     console.log("Quiz submitted...");
@@ -92,7 +126,7 @@ app.controller('quireQuizController', ['$scope', '$compile', function($scope, $c
   };
 
   this.reviewQuiz = function(answers) {
-
+    console.log(answers[0]);
     var len = answers.length;
 
     for (var i = 0; i < len; i++) {
@@ -105,6 +139,7 @@ app.controller('quireQuizController', ['$scope', '$compile', function($scope, $c
         console.log("wrong answer");
       }
     }
+    console.log(this.userResults.incorrect);
     // quiz is finished
     this.renderResults(true);
   };
@@ -117,10 +152,35 @@ app.controller('quireQuizController', ['$scope', '$compile', function($scope, $c
       this.message = "You have not completed the quiz! Please go back to complete it before submitting."
     } else {
       console.log("completed...rendering results...");
-      this.message = "Your test results are: " + this.userResults.score + " out of " + this.quizQuestions.length + "!"
+      this.message = this.userResults.score + " out of " + this.quizQuestions.length + " correct!"
     }
   };
 
   this.renderQuestions();
 
 }]);
+
+$(document).ready(function(){
+  $('#scroll-down i').click(function() {
+      $('html, body').animate({
+          scrollTop: $(".quiz-container").offset().top
+      }, 750);
+      return false;
+  });
+
+  var $hamburger = $("#hamburger-button")
+
+  function animateHamburger() {
+    $hamburger.toggleClass('open');
+  };
+
+  function slideMenu() {
+    $("header>nav>ul").toggleClass('open');
+  };
+
+  $hamburger.on('click', function(){
+    slideMenu();
+    animateHamburger();
+  });
+
+});

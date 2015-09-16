@@ -6,6 +6,7 @@
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script type="text/javascript" src="scripts/app.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
 		<link rel="stylesheet" type="text/css" href="styles/modal.css">
@@ -15,9 +16,12 @@
     <!--~~~~~~~ modal popup results ~~~~~~~-->
     <div class="md-modal md-effect-1" id="modal-1">
       <div class="md-content">
-        <h3>Quiz Results</h3>
+        <h3>Your Quiz Results</h3>
         <div>
           <p ng-bind="quiz.message">
+          </p>
+          <p>
+
           </p>
           <button class="md-close">Back to Quiz</button>
         </div>
@@ -25,7 +29,35 @@
     </div>
 
     <header>
-
+      <nav>
+        <ul>
+          <li>
+            <div id="hamburger-button">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </li>
+          <li class="nav-button float-right">
+            <a href="#">sign in</a>
+          </li>
+          <li class="nav-button float-right">
+            <a href="#">sign up</a>
+          </li>
+          <li class="nav-button float-right">
+            <a href="#">about</a>
+          </li>
+          <li class="nav-button float-right">
+            <a href="#">blog</a>
+          </li>
+          <li class="nav-button">
+            <a href="#">companies</a>
+          </li>
+          <li class="nav-button">
+            <a href="#">how it works</a>
+          </li>
+        </ul>
+      </nav>
     </header>
     <div class="main-container">
       <div class="quiz-page-header">
@@ -35,7 +67,12 @@
         <p>Do you have what it takes to be an investor?</p>
       </div>
       <div class="scroll-container">
-        
+        <div id="scroll-down">
+          <p>
+            Take the quiz below!
+          </p>
+          <i class="fa fa-angle-down"></i>
+        </div>
       </div>
       <div class="quiz-container">
 
