@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300);
+
 * {
   font: inherit;
   box-sizing: border-box;
@@ -11,11 +13,12 @@ body {
   background-color: #F2F4EF;
 }
 
-/*html {
+html {
   font-size: 1em;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
-}*/
+  letter-spacing: .5px;
+}
 
 ul {
   padding: 0;
@@ -25,18 +28,150 @@ li {
   list-style: none;
 }
 
-.answer-list input[type="radio"] {
-  /*display: none;*/
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-input {
-  background-color: green;
+a:visited {
+  color: inherit;
 }
 
-input[type="radio"], input[type="checkbox"] {
-    margin: 10px 0.5ex;
-    background-color: green !important;
+header {
+  background-color: #4D9F30;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 8;
+  height: 75px;
+  width: 100%;
+  -webkit-transition: height 500ms ease;
+  -o-transition: height 500ms ease;
+  transition: height 500ms ease;
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+  -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 }
 
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+div.main-container {
+  padding-top: 6rem;
+}
+
+div.quiz-page-header {
+  text-align: center;
+  padding: 10em 0;
+}
+
+div.quiz-page-header h1 {
+  font-size: 3em;
+  margin-bottom: .15em;
+  color: #4D9F30;
+}
+
+div.quiz-page-header p {
+  font-size: 1.25em;
+}
+
+div.quiz-container, div.button-container {
+  color: #0E3012;
+  width: 1200px;
+  margin: 0 auto;
+  padding: 2em 8em;
+}
+
+div.quiz-container {
+  /*border-top: 1px solid #4D9F30;*/
+}
+
+div.quiz-container ul.answer-list li {
+  margin-bottom: 1em;
+}
+
+ul.answer-list input[type="radio"] {
+  display: none;
+}
+
+div.button-container {
+  padding: 0 8em;
+  margin-bottom: 4em;
+}
+
+input[type="radio"]:hover, label:hover {
+  cursor: pointer;
+}
+
+input[type="radio"] + label span.radioButton {
+  appearance: none;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  vertical-align: middle;
+  box-shadow: hsla(0,0%,100%,.15) 0 1px 1px, inset hsla(0,0%,0%,.5) 0 0 0 1px;
+  background-color: #efefef;
+  background-image: radial-gradient(ellipse at center,  #F4ED11 0%,#F4ED11 40%,#efefef 45%);
+  background-repeat: no-repeat;
+  transition: background-position .15s cubic-bezier(.8, 0, 1, 1);
+  margin-right: 1em;
+}
+input[type="radio"]:checked + label span.radioButton {
+  transition: background-position .2s .15s cubic-bezier(0, 0, .2, 1);
+}
+
+input[type="radio"] + label span.radioButton {
+  background-position: -24px 0;
+}
+input[type="radio"]:checked + label span.radioButton {
+  background-position: 0 0;
+}
+
+button {
+  border:none;
+  background-color: #0E3012;
+  color:#fff;
+  font-size:20px;
+  padding:10px;
+  border-radius:3px;
+  cursor:pointer;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+button:hover {
+  background-color: #4D9F30;
+  -webkit-box-shadow: 0px 6px 34px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 6px 34px -4px rgba(0,0,0,0.75);
+  box-shadow: 0px 6px 34px -4px rgba(0,0,0,0.75);
+}
+
+footer {
+  /*background-color: #4D9F30;*/
+  color: #0E3012;
+  z-index: 3;
+  text-align: center;
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 25px 0;
+}
+
+footer .footer-content {
+  bottom: 1rem;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-size: .75em;
+}
 
 /*#4D9F30 Quire's green*/

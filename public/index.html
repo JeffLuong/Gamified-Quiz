@@ -12,8 +12,8 @@
   </head>
 
   <body ng-controller="quireQuizController as quiz">
-    <!--~~~~~~~ MODAL ~~~~~~~-->
-    <div class="md-modal md-effect-2" id="modal-1">
+    <!--~~~~~~~ modal popup results ~~~~~~~-->
+    <div class="md-modal md-effect-1" id="modal-1">
       <div class="md-content">
         <h3>Quiz Results</h3>
         <div>
@@ -24,8 +24,38 @@
       </div>
     </div>
 
-    <div class="main-container"></div>
-    <button class="md-trigger" data-modal="modal-1" type="button" ng-click="quiz.submitQuiz()">Submit</button>
+    <header>
+
+    </header>
+    <div class="main-container">
+      <div class="quiz-page-header">
+        <h1>
+          Investor Education Quiz
+        </h1>
+        <p>Do you have what it takes to be an investor?</p>
+      </div>
+      <div class="scroll-container">
+        
+      </div>
+      <div class="quiz-container">
+
+      </div>
+      <div class="button-container">
+        <button class="md-trigger" data-modal="modal-1" type="button" ng-click="quiz.submitQuiz()">Submit</button>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <div class="copyright">
+          &#169; 2015 Quire
+        </div>
+        <div class="links">
+          <a href="#">terms + privacy</a>
+        </div>
+      </div>
+    </footer>
+
 
     <div class="md-overlay"></div>
     <script type="text/javascript" src="scripts/libs/classManager.js"></script>

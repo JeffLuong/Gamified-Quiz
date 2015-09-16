@@ -11,11 +11,18 @@ app.controller('quireQuizController', ['$scope', '$compile', function($scope, $c
                  { incorrect : "All of above"} ]
     },
     {
-      question: "What does it mean to be an accredited investor?",
-      answers: [ { incorrect : "Someone with a credit rating at or above 750." },
-                 { incorrect : "Someone who is certified by the SEC to participate in a securities exchange."},
-                 { correct   : "Someone who makes $200,000+ annually or has $1 million+ in net assets."},
-                 { incorrect : "All of above"} ]
+      question: "This is another dummy question. Which is the correct answer?",
+      answers: [ { incorrect : "The obviously incorrect one here." },
+                 { correct   : "Grits and gravy."},
+                 { incorrect : "The other incorrect but less obvious answer."},
+                 { incorrect : "None of these are correct."} ]
+    },
+    {
+      question: "What is this?",
+      answers: [ { correct   : "This is a quiz." },
+                 { incorrect : "This is not a quiz."},
+                 { incorrect : "This is what?"},
+                 { incorrect : "60% of the time, it works, everytime."} ]
     }
   ];
 
@@ -38,7 +45,7 @@ app.controller('quireQuizController', ['$scope', '$compile', function($scope, $c
         $quest.text(questions[i].question);
         $questCont.append($quest);
         $questCont.append($answersList);
-        $('.main-container').append($questCont);
+        $('.quiz-container').append($questCont);
 
         for (var j = 0; j < answersArray.length; j++) {
             var $answer = $("<li>"),
