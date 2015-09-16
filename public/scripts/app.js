@@ -23,6 +23,8 @@ app.controller('quireQuizController', ['$scope', '$compile', function($scope, $c
     score: 0
   };
 
+  this.message = "";
+
   this.renderQuestions = function() {
     var questions    = this.quizQuestions,
         numOfQuests  = questions.length;
@@ -41,20 +43,27 @@ app.controller('quireQuizController', ['$scope', '$compile', function($scope, $c
         for (var j = 0; j < answersArray.length; j++) {
             var $answer = $("<li>"),
                 $input  = $("<input class='answer' name='question-" + (i + 1) + "' type='radio' id='q" + (i + 1) + "a" + (j + 1) + "'>"),
-                $label  = $("<label for='q" + (i + 1) + "a" + (j + 1) + "'>");
+                $label  = $("<label for='q" + (i + 1) + "a" + (j + 1) + "'>"),
+                $span1  = $("<span class='radioButton'>")
+                $span2  = $("<span>");
 
+            $label.append($span1);
             if (answersArray[j].incorrect) {
-              $label.text(answersArray[j].incorrect);
+              console.log("label text");
+              $span2.text(answersArray[j].incorrect);
               $input.attr("value", false);
             } else {
-              $label.text(answersArray[j].correct);
+              console.log("label text");
+              $span2.text(answersArray[j].correct);
               $input.attr("value", true);
             }
 
+            $label.append($span2);
             $answer.append($input);
             $answer.append($label);
             $answersList.append($answer);
 
+            // need $compile if you want to dynamically create elems with ng- functions
             $compile($input)($scope);
         };
     };
@@ -98,18 +107,13 @@ app.controller('quireQuizController', ['$scope', '$compile', function($scope, $c
     // test if quiz is finished
     if (quizStatus === null) {
       console.log("quiz not completed!");
+      this.message = "You have not completed the quiz! Please go back to complete it before submitting."
     } else {
       console.log("completed...rendering results...");
+      this.message = "Your test results are: " + this.userResults.score + " out of " + this.quizQuestions.length + "!"
     }
   };
 
   this.renderQuestions();
 
 }]);
-
-// <div class="quest-container">
-//   <h2 ng-bind=""></h2>
-//   <ul class="answer-list">
-//
-//   </ul>
-// </div>

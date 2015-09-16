@@ -8,13 +8,29 @@
     <script type="text/javascript" src="scripts/app.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
+		<link rel="stylesheet" type="text/css" href="styles/modal.css">
   </head>
 
   <body ng-controller="quireQuizController as quiz">
-    <div class="main-container">
-
+    <!--~~~~~~~ MODAL ~~~~~~~-->
+    <div class="md-modal md-effect-2" id="modal-1">
+      <div class="md-content">
+        <h3>Quiz Results</h3>
+        <div>
+          <p ng-bind="quiz.message">
+          </p>
+          <button class="md-close">Back to Quiz</button>
+        </div>
+      </div>
     </div>
-    <button type="button" ng-click="quiz.submitQuiz()">Submit</button>
+
+    <div class="main-container"></div>
+    <button class="md-trigger" data-modal="modal-1" type="button" ng-click="quiz.submitQuiz()">Submit</button>
+
+    <div class="md-overlay"></div>
+    <script type="text/javascript" src="scripts/libs/classManager.js"></script>
+    <script type="text/javascript" src="scripts/libs/modalEffects.js"></script>
+    <script type="text/javascript" src="scripts/libs/cssParser.js"></script>
   </body>
 
 </html>

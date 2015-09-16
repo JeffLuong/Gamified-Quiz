@@ -8,6 +8,7 @@
 
 body {
   margin: 0;
+  background-color: #F2F4EF;
 }
 
 /*html {
@@ -23,3 +24,19 @@ ul {
 li {
   list-style: none;
 }
+
+.answer-list input[type="radio"] {
+  /*display: none;*/
+}
+
+input {
+  background-color: green;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin: 10px 0.5ex;
+    background-color: green !important;
+}
+
+
+/*#4D9F30 Quire's green*/
